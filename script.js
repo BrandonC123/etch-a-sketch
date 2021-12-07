@@ -28,6 +28,30 @@ function resetGrid (size) {
     divArray = [];
 }
 
+const sixteenBtn = document.querySelector('.sixteen');
+sixteenBtn.addEventListener('click', () => {
+    resetGrid(defaultSize);
+    defaultSize = 16;
+    createDiv(defaultSize);
+    createGrid(defaultSize);
+});
+
+const twentyBtn = document.querySelector('.twenty');
+twentyBtn.addEventListener('click', () => {
+    resetGrid(defaultSize);
+    defaultSize = 20;
+    createDiv(defaultSize);
+    createGrid(defaultSize);
+});
+
+const fiftyBtn = document.querySelector('.fifty');
+fiftyBtn.addEventListener('click', () => {
+    resetGrid(defaultSize);
+    defaultSize = 50;
+    createDiv(defaultSize);
+    createGrid(defaultSize);
+});
+
 const resetBtn = document.querySelector('.reset-btn');
 resetBtn.addEventListener('click', () => {
     resetGrid(defaultSize);
