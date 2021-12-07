@@ -15,3 +15,13 @@ for (let i = 0; i < size*size; i++) {
     gridContainer.appendChild(divArray[i]);
 }
 
+function resetGrid () {
+    for (let i = 0; i < size*size; i++) {
+        divArray[i].style.backgroundColor = 'white';
+    }
+}
+
+const resetBtn = document.querySelector('.reset-btn');
+resetBtn.addEventListener('click', () => {
+    resetGrid();
+});
