@@ -23,15 +23,20 @@ createGrid(defaultSize);
 
 function resetGrid (size) {
     for (let i = 0; i < size*size; i++) {
-        divArray[i].style.backgroundColor = 'white';
+        gridContainer.removeChild(divArray[i]);
     }
+    divArray = [];
 }
 
 const resetBtn = document.querySelector('.reset-btn');
 resetBtn.addEventListener('click', () => {
     resetGrid(defaultSize);
     let newSize = prompt('Please enter a new size', '');
-    defaultSize = newSize;
+    if (newSize > 100) {
+        alert('Too big! Staying at ' + defaultSize + 'x' + defaultSize);
+    } else {
+        defaultSize = newSize;
+    }
     createDiv(defaultSize);
     createGrid(defaultSize);
 });
