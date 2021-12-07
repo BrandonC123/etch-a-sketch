@@ -3,16 +3,15 @@
     flex-wrap: wrap;
     flex-direction: column;
     margin: auto;
-    height: 416px;
-    width: 416px;
+    height: 500px;
+    width: 500px;
     border: solid 2px black;
 }
 
 .div-grid {
     height: 10px;
     width: 10px;
-    padding: 8px;
-    margin-bottom: 0px;
+    box-sizing: border-box;
 }
 
 .grid-color {

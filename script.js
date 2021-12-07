@@ -1,17 +1,17 @@
 let divArray = [];
-for (let i = 0; i < 256; i++) {
+let size = 32;
+for (let i = 0; i < size*size; i++) {
     divArray.push(document.createElement('div'));
 }
 
 const gridContainer = document.querySelector('.grid-container');
-for (let i = 0; i < 256; i++) {
+for (let i = 0; i < size*size; i++) {
     divArray[i].classList.add('div-grid');
+    divArray[i].style.height = (500 / size) + 'px';
+    divArray[i].style.width = (500 / size) + 'px';
+    divArray[i].addEventListener('mouseenter', () => {
+        divArray[i].classList.add('grid-color');
+    });
     gridContainer.appendChild(divArray[i]);
 }
 
-for (let i = 0; i < 256; i++) {
-    divArray[i].addEventListener('mouseenter', () => {
-        console.log('test');
-        divArray[i].classList.add('grid-color');
-    });
-}
