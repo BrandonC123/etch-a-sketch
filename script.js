@@ -32,33 +32,37 @@ function resetGrid (size) {
 
 function colorChanger (color) {
     defaultColor = color;
+    for (let i = 0; i < defaultSize * defaultSize; i++) {
+        divArray[i].removeEventListener('mouseenter', colorChanger);
+        divArray[i].addEventListener('mouseenter', () => {
+            divArray[i].style.backgroundColor = defaultColor;
+        });
+    }
 }
 
-const sixteenBtn = document.querySelector('.sixteen');
+function gridResizer (size, color) {
+    resetGrid(defaultSize);
+    defaultSize = size;
+    createDiv(defaultSize);
+    createGrid(defaultSize, color);
+}
+
+const sixteenBtn = document.querySelector('#sixteen');
 sixteenBtn.addEventListener('click', () => {
-    resetGrid(defaultSize);
-    defaultSize = 16;
-    createDiv(defaultSize);
-    createGrid(defaultSize, defaultColor);
+    gridResizer(16, defaultColor);
 });
 
-const twentyBtn = document.querySelector('.twenty');
+const twentyBtn = document.querySelector('#twenty');
 twentyBtn.addEventListener('click', () => {
-    resetGrid(defaultSize);
-    defaultSize = 20;
-    createDiv(defaultSize);
-    createGrid(defaultSize, defaultColor);
+    gridResizer(20, defaultColor);
 });
 
-const fiftyBtn = document.querySelector('.fifty');
+const fiftyBtn = document.querySelector('#fifty');
 fiftyBtn.addEventListener('click', () => {
-    resetGrid(defaultSize);
-    defaultSize = 50;
-    createDiv(defaultSize);
-    createGrid(defaultSize, defaultColor);
+    gridResizer(50, defaultColor);
 });
 
-const resetBtn = document.querySelector('.reset-btn');
+const resetBtn = document.querySelector('#reset-btn');
 resetBtn.addEventListener('click', () => {
     resetGrid(defaultSize);
     let newSize = prompt('Please enter a new size', '');
@@ -74,10 +78,14 @@ resetBtn.addEventListener('click', () => {
 const orangeBtn = document.querySelector('#orange');
 orangeBtn.addEventListener('click', () => {
     colorChanger('orange');
-    for (let i = 0; i < defaultSize * defaultSize; i++) {
-        divArray[i].removeEventListener('mouseenter', colorChanger);
-        divArray[i].addEventListener('mouseenter', () => {
-            divArray[i].style.backgroundColor = defaultColor;
-        });
-    }
+});
+
+const blackBtn = document.querySelector('#black');
+blackBtn.addEventListener('click', () => {
+    colorChanger('black');
+});
+
+const cadetBlueBtn = document.querySelector('#cadet-blue');
+cadetBlueBtn.addEventListener('click', () => {
+    colorChanger('#5F9EA0');
 });
