@@ -14,7 +14,7 @@
     justify-content: center;
 }
 
-.buttons {
+.size-buttons {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -32,4 +32,8 @@
 
 .div-grid {
     box-sizing: border-box;
+}
+
+.grid-color {
+    background-color: green;
 }
