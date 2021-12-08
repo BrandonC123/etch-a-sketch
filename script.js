@@ -14,7 +14,8 @@ function createGrid (size, color) {
         divArray[i].style.height = (500 / size) + 'px';
         divArray[i].style.width = (500 / size) + 'px';
         divArray[i].addEventListener('mouseenter', () => {
-            divArray[i].style.backgroundColor = color;
+            colorChanger(defaultColor);
+            divArray[i].style.backgroundColor = defaultColor;
         });
         gridContainer.appendChild(divArray[i]);
     }
@@ -73,4 +74,10 @@ resetBtn.addEventListener('click', () => {
 const orangeBtn = document.querySelector('#orange');
 orangeBtn.addEventListener('click', () => {
     colorChanger('orange');
+    for (let i = 0; i < defaultSize * defaultSize; i++) {
+        divArray[i].removeEventListener('mouseenter', colorChanger);
+        divArray[i].addEventListener('mouseenter', () => {
+            divArray[i].style.backgroundColor = defaultColor;
+        });
+    }
 });
