@@ -58,33 +58,41 @@ function gridResizer (size, color) {
     createGrid(defaultSize, color);
 }
 
-let pressed;
+let pressedS;
+let pressedC;
 function btnPressed (btn) {
-    if (pressed != null) {
-        pressed.classList.remove('btn-pressed');
+    if (btn.classList.contains('size-btn')) {
+        if (pressedS != null) {
+            pressedS.classList.remove('btn-pressed');
     }
-    btn.classList.add('btn-pressed');
+        btn.classList.add('btn-pressed');
+    } else {
+        if (pressedC != null) {
+            pressedC.classList.remove('btn-pressed');
+    }
+        btn.classList.add('btn-pressed');
+    }
 }
 
 const sixteenBtn = document.querySelector('#sixteen');
 sixteenBtn.addEventListener('click', () => {
     gridResizer(16, defaultColor);
     btnPressed(sixteenBtn);
-    pressed = sixteenBtn;
+    pressedS = sixteenBtn;
 });
 
 const twentyBtn = document.querySelector('#twenty');
 twentyBtn.addEventListener('click', () => {
     gridResizer(20, defaultColor);
     btnPressed(twentyBtn);
-    pressed = twentyBtn;
+    pressedS = twentyBtn;
 });
 
 const fiftyBtn = document.querySelector('#fifty');
 fiftyBtn.addEventListener('click', () => {
     gridResizer(50, defaultColor);
     btnPressed(fiftyBtn);
-    pressed = fiftyBtn;
+    pressedS = fiftyBtn;
 });
 
 const resetBtn = document.querySelector('#reset-btn');
@@ -100,22 +108,30 @@ resetBtn.addEventListener('click', () => {
     createGrid(defaultSize, defaultColor);
 });
 
-const orangeBtn = document.querySelector('#orange');
-orangeBtn.addEventListener('click', () => {
-    colorChanger('orange');
-});
-
 const blackBtn = document.querySelector('#black');
 blackBtn.addEventListener('click', () => {
     colorChanger('black');
+    btnPressed(blackBtn);
+    pressedC = blackBtn
+});
+
+const orangeBtn = document.querySelector('#orange');
+orangeBtn.addEventListener('click', () => {
+    colorChanger('orange');
+    btnPressed(orangeBtn);
+    pressedC = orangeBtn;
 });
 
 const cadetBlueBtn = document.querySelector('#cadet-blue');
 cadetBlueBtn.addEventListener('click', () => {
     colorChanger('#5F9EA0');
+    btnPressed(cadetBlueBtn);
+    pressedC = cadetBlueBtn;
 });
 
 const rgbBtn = document.querySelector('#rgb');
 rgbBtn.addEventListener('click', () => {
     colorChanger('rgb');
+    btnPressed(rgbBtn);
+    pressedC = rgbBtn;
 });
