@@ -15,7 +15,7 @@ function createGrid (size, color) {
         divArray[i].style.width = (500 / size) + 'px';
         divArray[i].addEventListener('mouseenter', () => {
             colorChanger(defaultColor);
-            divArray[i].style.backgroundColor = defaultColor;
+            divArray[i].style.backgroundColor = color;
         });
         gridContainer.appendChild(divArray[i]);
     }
@@ -41,14 +41,12 @@ function colorChanger (color) {
             let g = Math.floor(Math.random()* 256);
             let b = Math.floor(Math.random()* 256);
             test = 'rgb(' + r + ',' + g + ',' + b + ')'; 
+            color = test;
+            defaultColor = test;
         }
         divArray[i].removeEventListener('mouseenter', colorChanger);
         divArray[i].addEventListener('mouseenter', () => {
-            if (color != 'rgb') {
-                divArray[i].style.backgroundColor = defaultColor;
-            } else {
-                divArray[i].style.backgroundColor = test;
-            }
+            divArray[i].style.backgroundColor = defaultColor;
         });
     }
 }
@@ -60,19 +58,33 @@ function gridResizer (size, color) {
     createGrid(defaultSize, color);
 }
 
+let pressed;
+function btnPressed (btn) {
+    if (pressed != null) {
+        pressed.classList.remove('btn-pressed');
+    }
+    btn.classList.add('btn-pressed');
+}
+
 const sixteenBtn = document.querySelector('#sixteen');
 sixteenBtn.addEventListener('click', () => {
     gridResizer(16, defaultColor);
+    btnPressed(sixteenBtn);
+    pressed = sixteenBtn;
 });
 
 const twentyBtn = document.querySelector('#twenty');
 twentyBtn.addEventListener('click', () => {
     gridResizer(20, defaultColor);
+    btnPressed(twentyBtn);
+    pressed = twentyBtn;
 });
 
 const fiftyBtn = document.querySelector('#fifty');
 fiftyBtn.addEventListener('click', () => {
     gridResizer(50, defaultColor);
+    btnPressed(fiftyBtn);
+    pressed = fiftyBtn;
 });
 
 const resetBtn = document.querySelector('#reset-btn');
