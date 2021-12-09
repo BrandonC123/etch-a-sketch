@@ -31,11 +31,24 @@ function resetGrid (size) {
 }
 
 function colorChanger (color) {
-    defaultColor = color;
+    if (color != 'rgb') {
+        defaultColor = color;
+    }
     for (let i = 0; i < defaultSize * defaultSize; i++) {
+        let test;
+        if (color == 'rgb') {
+            let r = Math.floor(Math.random()* 256);
+            let g = Math.floor(Math.random()* 256);
+            let b = Math.floor(Math.random()* 256);
+            test = 'rgb(' + r + ',' + g + ',' + b + ')'; 
+        }
         divArray[i].removeEventListener('mouseenter', colorChanger);
         divArray[i].addEventListener('mouseenter', () => {
-            divArray[i].style.backgroundColor = defaultColor;
+            if (color != 'rgb') {
+                divArray[i].style.backgroundColor = defaultColor;
+            } else {
+                divArray[i].style.backgroundColor = test;
+            }
         });
     }
 }
@@ -88,4 +101,9 @@ blackBtn.addEventListener('click', () => {
 const cadetBlueBtn = document.querySelector('#cadet-blue');
 cadetBlueBtn.addEventListener('click', () => {
     colorChanger('#5F9EA0');
+});
+
+const rgbBtn = document.querySelector('#rgb');
+rgbBtn.addEventListener('click', () => {
+    colorChanger('rgb');
 });

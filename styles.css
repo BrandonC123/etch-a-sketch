@@ -2,21 +2,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 40px;
+    background-color: #D3D3D3;
+    border-radius: 10px;
 }
 
 #title {
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 2px black ;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
 }
 
 .content-container {
     display: flex;
-    justify-content: center;
+    gap: 15px;
 }
 
 .size-buttons {
     display: flex;
     flex-direction: column;
+    gap: 5px;
     align-items: flex-start;
 }
 
@@ -24,10 +32,11 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    /* margin: auto; */
     height: 500px;
     width: 500px;
-    border: solid 2px black;
+    border: solid 20px red;
+    box-shadow: 0 0 0 2px black inset;
+    border-radius: 5px;
 }
 
 .div-grid {
@@ -41,5 +50,15 @@
 .color-buttons {
     display: flex;
     flex-direction: column;
+    gap: 5px;
     align-items: flex-end;
+}
+
+button {
+    font-size: 16px;
+    background-color: #EADDCA;
+    font-family: 'Oswald', sans-serif;
+    border: none;
+    border: 2px solid #93C572;
+    border-radius: 3px;
 }
