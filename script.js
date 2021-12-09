@@ -1,6 +1,7 @@
 let divArray = [];
 let defaultSize = 16;
 let defaultColor = 'black';
+let rgbSelector;
 function createDiv (size) {
     for (let i = 0; i < size*size; i++) {
         divArray.push(document.createElement('div'));
@@ -15,7 +16,7 @@ function createGrid (size, color) {
         divArray[i].style.width = (500 / size) + 'px';
         divArray[i].addEventListener('mouseenter', () => {
             colorChanger(defaultColor);
-            divArray[i].style.backgroundColor = color;
+            // divArray[i].style.backgroundColor = color;
         });
         gridContainer.appendChild(divArray[i]);
     }
@@ -33,6 +34,7 @@ function resetGrid (size) {
 function colorChanger (color) {
     if (color != 'rgb') {
         defaultColor = color;
+        rgbSelector = false;
     }
     for (let i = 0; i < defaultSize * defaultSize; i++) {
         let test;
@@ -41,17 +43,24 @@ function colorChanger (color) {
             let g = Math.floor(Math.random()* 256);
             let b = Math.floor(Math.random()* 256);
             test = 'rgb(' + r + ',' + g + ',' + b + ')'; 
-            color = test;
-            defaultColor = test;
+            rgbSelector = true;
         }
         divArray[i].removeEventListener('mouseenter', colorChanger);
         divArray[i].addEventListener('mouseenter', () => {
+            if (color != 'rgb') {
             divArray[i].style.backgroundColor = defaultColor;
+            } else if (color == 'rgb') {
+                defaultColor = test;
+                divArray[i].style.backgroundColor = test;
+            }
         });
     }
 }
 
 function gridResizer (size, color) {
+    if (rgbSelector == true) {
+        color = 'rgb';
+    }
     resetGrid(defaultSize);
     defaultSize = size;
     createDiv(defaultSize);
