@@ -9,7 +9,7 @@ function createDiv (size) {
 }
 
 const gridContainer = document.querySelector('.grid-container');
-function createGrid (size, color) {
+function createGrid (size) {
     for (let i = 0; i < size*size; i++) {
         divArray[i].classList.add('div-grid');
         divArray[i].style.height = (500 / size) + 'px';
@@ -21,7 +21,7 @@ function createGrid (size, color) {
     }
 }
 createDiv(defaultSize);
-createGrid(defaultSize, defaultColor);
+createGrid(defaultSize);
 
 function resetGrid (size) {
     for (let i = 0; i < size*size; i++) {
@@ -57,11 +57,11 @@ function colorRGB () {
     return rgb;
 }
 
-function gridResizer (size, color) {
+function gridResizer (size) {
     resetGrid(defaultSize);
     defaultSize = size;
     createDiv(defaultSize);
-    createGrid(defaultSize, color);
+    createGrid(defaultSize);
 }
 
 let pressedS;
@@ -70,33 +70,39 @@ function btnPressed (btn) {
     if (btn.classList.contains('size-btn')) {
         if (pressedS != null) {
             pressedS.classList.remove('btn-pressed');
-    }
+        }
         btn.classList.add('btn-pressed');
-    } else {
+    } else if (btn.classList.contains('color-btn')) {
         if (pressedC != null) {
             pressedC.classList.remove('btn-pressed');
-    }
+        }
         btn.classList.add('btn-pressed');
+    } else {
+        pressedS.classList.remove('btn-pressed');
+        resetBtn.classList.add('btn-pressed');
+        resetBtn.addEventListener('transitionend', () => {
+            resetBtn.classList.remove('btn-pressed');
+        });
     }
 }
 
 const sixteenBtn = document.querySelector('#sixteen');
 sixteenBtn.addEventListener('click', () => {
-    gridResizer(16, defaultColor);
+    gridResizer(16);
     btnPressed(sixteenBtn);
     pressedS = sixteenBtn;
 });
 
 const twentyBtn = document.querySelector('#twenty');
 twentyBtn.addEventListener('click', () => {
-    gridResizer(20, defaultColor);
+    gridResizer(20);
     btnPressed(twentyBtn);
     pressedS = twentyBtn;
 });
 
 const fiftyBtn = document.querySelector('#fifty');
 fiftyBtn.addEventListener('click', () => {
-    gridResizer(50, defaultColor);
+    gridResizer(50);
     btnPressed(fiftyBtn);
     pressedS = fiftyBtn;
 });
@@ -107,11 +113,14 @@ resetBtn.addEventListener('click', () => {
     let newSize = prompt('Please enter a new size', '');
     if (newSize > 100) {
         alert('Too big! Staying at ' + defaultSize + 'x' + defaultSize);
-    } else {
+    } else if (newSize > 0) {
         defaultSize = newSize;
+    } else {
+        alert('Invalid! Staying at ' + defaultSize + 'x' + defaultSize);
     }
     createDiv(defaultSize);
-    createGrid(defaultSize, defaultColor);
+    createGrid(defaultSize);
+    btnPressed(resetBtn);
 });
 
 const blackBtn = document.querySelector('#black');
