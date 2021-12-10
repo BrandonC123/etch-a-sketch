@@ -15,8 +15,7 @@ function createGrid (size, color) {
         divArray[i].style.height = (500 / size) + 'px';
         divArray[i].style.width = (500 / size) + 'px';
         divArray[i].addEventListener('mouseenter', () => {
-            colorChanger(defaultColor);
-            // divArray[i].style.backgroundColor = color;
+            divArray[i].style.backgroundColor = colorChanger2(defaultColor);
         });
         gridContainer.appendChild(divArray[i]);
     }
@@ -32,35 +31,33 @@ function resetGrid (size) {
 }
 
 function colorChanger (color) {
-    if (color != 'rgb') {
-        defaultColor = color;
-        rgbSelector = false;
-    }
     for (let i = 0; i < defaultSize * defaultSize; i++) {
-        let test;
-        if (color == 'rgb') {
-            let r = Math.floor(Math.random()* 256);
-            let g = Math.floor(Math.random()* 256);
-            let b = Math.floor(Math.random()* 256);
-            test = 'rgb(' + r + ',' + g + ',' + b + ')'; 
-            rgbSelector = true;
-        }
-        divArray[i].removeEventListener('mouseenter', colorChanger);
+        divArray[i].removeEventListener('mouseenter', colorChanger2);
         divArray[i].addEventListener('mouseenter', () => {
-            if (color != 'rgb') {
-            divArray[i].style.backgroundColor = defaultColor;
-            } else if (color == 'rgb') {
-                defaultColor = test;
-                divArray[i].style.backgroundColor = test;
-            }
+            divArray[i].style.backgroundColor = colorChanger2(color);
         });
     }
+    rgbSelector = false;
+}
+
+function colorChanger2 (color) {
+    if (rgbSelector == true) {
+        defaultColor = colorRGB();
+    } else {
+        defaultColor = color;
+    }
+    return defaultColor;
+}
+
+function colorRGB () {
+    let r = Math.floor(Math.random()* 256);
+    let g = Math.floor(Math.random()* 256);
+    let b = Math.floor(Math.random()* 256);
+    let rgb = 'rgb(' + r + ',' + g + ',' + b + ')'; 
+    return rgb;
 }
 
 function gridResizer (size, color) {
-    if (rgbSelector == true) {
-        color = 'rgb';
-    }
     resetGrid(defaultSize);
     defaultSize = size;
     createDiv(defaultSize);
@@ -143,4 +140,5 @@ rgbBtn.addEventListener('click', () => {
     colorChanger('rgb');
     btnPressed(rgbBtn);
     pressedC = rgbBtn;
+    rgbSelector = true;
 });
