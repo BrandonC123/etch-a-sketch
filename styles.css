@@ -34,7 +34,7 @@ body {
     align-items: flex-start;
 }
 
-#reset-btn {
+#reset {
     transition: all .1s ease;
 }
 

@@ -107,8 +107,8 @@ fiftyBtn.addEventListener('click', () => {
     pressedS = fiftyBtn;
 });
 
-const resetBtn = document.querySelector('#reset-btn');
-resetBtn.addEventListener('click', () => {
+const customBtn = document.querySelector('#custom');
+customBtn.addEventListener('click', () => {
     resetGrid(defaultSize);
     let newSize = prompt('Please enter a new size', '');
     if (newSize > 100) {
@@ -118,6 +118,15 @@ resetBtn.addEventListener('click', () => {
     } else {
         alert('Invalid! Staying at ' + defaultSize + 'x' + defaultSize);
     }
+    pressedS = customBtn;
+    btnPressed(customBtn);
+    createDiv(defaultSize);
+    createGrid(defaultSize);
+});
+
+const resetBtn = document.querySelector('#reset');
+resetBtn.addEventListener('click', () => {
+    resetGrid(defaultSize);
     createDiv(defaultSize);
     createGrid(defaultSize);
     btnPressed(resetBtn);
