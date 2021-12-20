@@ -1,11 +1,12 @@
 body {
     padding: 0 40px 0 40px;
-    background-color: #C0C0C0;
+    /* background-color: #C0C0C0; */
 }
 
 #overall-container {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     align-items: center;
     padding: 40px;
     background-color: #696969;
@@ -46,8 +47,8 @@ body {
     height: 500px;
     width: 500px;
     border: solid 20px red;
-    box-shadow: 0 0 0 2px black inset;
     border-radius: 10px;
+    margin-bottom: 20px;
     background-color: #D3D3D3;
 }
 
@@ -64,7 +65,7 @@ body {
 }
 
 .btn-pressed {
-    border: 5px solid green;
+    border: 5px solid #2E8B57;
 }
 
 button {

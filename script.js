@@ -2,6 +2,7 @@ let divArray = [];
 let defaultSize = 16;
 let defaultColor = 'black';
 let rgbSelector;
+let bgColor = '#D3D3D3';
 function createDiv (size) {
     for (let i = 0; i < size*size; i++) {
         divArray.push(document.createElement('div'));
@@ -43,8 +44,10 @@ function colorChanger (color) {
 function colorChanger2 (color) {
     if (rgbSelector == true) {
         defaultColor = colorRGB();
-    } else {
+    } else if (color != 'erase') {
         defaultColor = color;
+    } else {
+        defaultColor = bgColor;
     }
     return defaultColor;
 }
@@ -124,14 +127,6 @@ customBtn.addEventListener('click', () => {
     createGrid(defaultSize);
 });
 
-const resetBtn = document.querySelector('#reset');
-resetBtn.addEventListener('click', () => {
-    resetGrid(defaultSize);
-    createDiv(defaultSize);
-    createGrid(defaultSize);
-    btnPressed(resetBtn);
-});
-
 const blackBtn = document.querySelector('#black');
 blackBtn.addEventListener('click', () => {
     colorChanger('black');
@@ -159,4 +154,19 @@ rgbBtn.addEventListener('click', () => {
     btnPressed(rgbBtn);
     pressedC = rgbBtn;
     rgbSelector = true;
+});
+
+const resetBtn = document.querySelector('#reset');
+resetBtn.addEventListener('click', () => {
+    resetGrid(defaultSize);
+    createDiv(defaultSize);
+    createGrid(defaultSize);
+    btnPressed(resetBtn);
+});
+
+const eraserBtn = document.querySelector('#eraser');
+eraserBtn.addEventListener('click', () => {
+    colorChanger('erase');
+    btnPressed(eraserBtn);
+    pressedC = eraserBtn;
 });
