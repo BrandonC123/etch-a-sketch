@@ -69,6 +69,7 @@ let pressedC;
 function btnPressed (btn) {
     if (btn.classList.contains('size-btn')) {
         if (pressedS != null) {
+            console.log('t');
             pressedS.classList.remove('btn-pressed');
         }
         btn.classList.add('btn-pressed');
@@ -78,7 +79,6 @@ function btnPressed (btn) {
         }
         btn.classList.add('btn-pressed');
     } else {
-        pressedS.classList.remove('btn-pressed');
         resetBtn.classList.add('btn-pressed');
         resetBtn.addEventListener('transitionend', () => {
             resetBtn.classList.remove('btn-pressed');
@@ -118,8 +118,8 @@ customBtn.addEventListener('click', () => {
     } else {
         alert('Invalid! Staying at ' + defaultSize + 'x' + defaultSize);
     }
-    pressedS = customBtn;
     btnPressed(customBtn);
+    pressedS = customBtn;
     createDiv(defaultSize);
     createGrid(defaultSize);
 });
